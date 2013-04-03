@@ -1,8 +1,13 @@
 package com.github.curioustechizen.doubletake;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+
+import android.os.Build;
 import android.view.View;
+
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorListenerAdapter;
+import com.nineoldandroids.view.ViewHelper;
+import com.nineoldandroids.view.ViewPropertyAnimator;
 
 public class CrossfadeAnimation {
 
@@ -41,13 +46,13 @@ public class CrossfadeAnimation {
 	}
 
 	public void animate() {
-		mInView.setAlpha(0f);
+		ViewHelper.setAlpha(mInView, 0);
 		mInView.setVisibility(View.VISIBLE);
-		mInView.animate().alpha(1f)
+		ViewPropertyAnimator.animate(mInView).alpha(1f)
 			.setDuration(mAnimationTime)
 			.setListener(null);
 
-		mOutView.animate()
+		ViewPropertyAnimator.animate(mOutView)
 			.alpha(0f)
 			.setDuration(mAnimationTime)
 			.setListener(new AnimatorListenerAdapter() {
@@ -58,4 +63,6 @@ public class CrossfadeAnimation {
 
 			});
 	}
+	
+	
 }
