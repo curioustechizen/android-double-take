@@ -11,5 +11,5 @@ To start off, this library provides a couple of animations described in the Andr
 ##ToDos:
   
   - Documentation
-  - Add ZoomAnimation
   - Provide a way to hook into the animation lifecycle - i.e., provide the library client code a callback similar to `AnimatorListenerAdapter`
+  - Add other animations
