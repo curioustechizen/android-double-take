@@ -63,6 +63,7 @@ public class MainActivity extends ListActivity {
         mSamples = new Sample[]{
                 new Sample(R.string.title_crossfade, CrossfadeActivity.class),
                 new Sample(R.string.title_zoom, ZoomActivity.class),
+                new Sample(R.string.title_zoom_generic_view, GenericViewZoomActivity.class),
         };
 
         setListAdapter(new ArrayAdapter<Sample>(this,

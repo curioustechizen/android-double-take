@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/topContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp" >
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" 
+        android:id="@+id/tableLayout1">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/holo_blue_bright" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/holo_red_dark" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/holo_orange_light" />
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="0dp"
+                android:layout_height="96dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/holo_green_light" />
+        </TableRow>
+    </TableLayout>
+
+    <FrameLayout
+        android:id="@+id/zoomedContainer"
+        android:layout_width="match_parent"
+        android:layout_height="224dp"
+        android:layout_gravity="center_horizontal" >
+
+        <View
+            android:id="@+id/zoomedView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:background="@color/holo_blue_bright"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/zoomedView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:background="@color/holo_red_dark"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/zoomedView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:background="@color/holo_orange_light"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/zoomedView4"
+           android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:background="@color/holo_green_light"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</FrameLayout>

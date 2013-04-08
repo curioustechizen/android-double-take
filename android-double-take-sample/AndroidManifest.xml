@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.curioustechizen.doubletake.sample"
-    android:versionCode="4"
-    android:versionName="0.2.1" >
+    android:versionCode="5"
+    android:versionName="0.2.2" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -23,6 +23,7 @@
         </activity>
         <activity android:name="CrossfadeActivity"></activity>
         <activity android:name="ZoomActivity"></activity>
+        <activity android:name="GenericViewZoomActivity"></activity>
     </application>
 
 </manifest>
