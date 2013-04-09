@@ -64,24 +64,29 @@ public class TouchHighlightImageButton extends ImageButton {
         setBackgroundColor(0);
         setPadding(0, 0, 0, 0);
 
-        // Retrieve the drawable resource assigned to the android.R.attr.selectableItemBackground
-        // theme attribute from the current theme.
-        TypedArray a = getContext()
-                .obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
-        mForegroundDrawable = a.getDrawable(0);
-        mForegroundDrawable.setCallback(this);
-        a.recycle();
-    }
+		// Retrieve the drawable resource assigned to the
+		// android.R.attr.selectableItemBackground
+		// theme attribute from the current theme.
+		if (Utils.isHoneycombOrLater()) {
+			TypedArray a = getContext().obtainStyledAttributes(
+					new int[] { android.R.attr.selectableItemBackground });
+			mForegroundDrawable = a.getDrawable(0);
+			mForegroundDrawable.setCallback(this);
+			a.recycle();
+		}
+	}
 
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
 
-        // Update the state of the highlight drawable to match
-        // the state of the button.
-        if (mForegroundDrawable.isStateful()) {
-            mForegroundDrawable.setState(getDrawableState());
-        }
+		// Update the state of the highlight drawable to match
+		// the state of the button.
+		if (Utils.isHoneycombOrLater()) {
+			if (mForegroundDrawable.isStateful()) {
+				mForegroundDrawable.setState(getDrawableState());
+			}
+		}
 
         // Trigger a redraw.
         invalidate();
@@ -92,12 +97,15 @@ public class TouchHighlightImageButton extends ImageButton {
         // First draw the image.
         super.onDraw(canvas);
 
-        // Then draw the highlight on top of it. If the button is neither focused
-        // nor pressed, the drawable will be transparent, so just the image
-        // will be drawn.
-        mForegroundDrawable.setBounds(mCachedBounds);
-        mForegroundDrawable.draw(canvas);
-    }
+		// Then draw the highlight on top of it. If the button is neither
+		// focused
+		// nor pressed, the drawable will be transparent, so just the image
+		// will be drawn.
+		if (Utils.isHoneycombOrLater()) {
+			mForegroundDrawable.setBounds(mCachedBounds);
+			mForegroundDrawable.draw(canvas);
+		}
+	}
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {

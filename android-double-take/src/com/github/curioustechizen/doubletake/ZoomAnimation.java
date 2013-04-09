@@ -73,7 +73,7 @@ public class ZoomAnimation {
 
 		final Point globalOffset = new Point();
 
-		// The start bounds are the global visible rectangle of the thumbnail,
+		// The start bounds are the global visible rectangle of the zoomed out view,
 		// and the
 		// final bounds are the global visible rectangle of the container view.
 		// Also
@@ -118,14 +118,10 @@ public class ZoomAnimation {
 			mCurrentAnimator.cancel();
 		}
 
-		// Load the high-resolution "zoomed-in" image.
-		// final ImageView expandedImageView = (ImageView)
-		// findViewById(R.id.expanded_image);
-		// expandedImageView.setImageResource(imageResId);
-
-		// Hide the thumbnail and show the zoomed-in view. When the animation
+		
+		// Hide the zoomed-out view and show the zoomed-in view. When the animation
 		// begins,
-		// it will position the zoomed-in view in the place of the thumbnail.
+		// it will position the zoomed-in view in the place of the zoomed-out view.
 		ViewHelper.setAlpha(mZoomedOutView, 0f);
 		//mZoomedOutView.setAlpha(0f);
 		mZoomedInView.setVisibility(View.VISIBLE);

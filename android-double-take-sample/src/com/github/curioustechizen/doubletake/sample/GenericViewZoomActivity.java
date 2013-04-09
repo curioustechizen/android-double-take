@@ -2,6 +2,7 @@ package com.github.curioustechizen.doubletake.sample;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -19,16 +20,21 @@ public class GenericViewZoomActivity extends FragmentActivity {
 		final View view3 = findViewById(R.id.view3);
 		final View view4 = findViewById(R.id.view4);
 
-		// final ViewGroup container = (ViewGroup)
-		// findViewById(R.id.topContainer);
-		final ViewGroup zoomedInContainer = (ViewGroup) findViewById(R.id.zoomedContainer);
-		final ViewGroup zoomedOutContainer = (ViewGroup) findViewById(R.id.tableLayout1);
+		
+		final ViewGroup zoomedInContainer = (ViewGroup) findViewById(
+				R.id.zoomedContainer);
+		final ViewGroup zoomedOutContainer = (ViewGroup) findViewById(
+				R.id.tableLayout1);
 
 		OnClickListener listener = new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				View zoomedView = null;
+				if(BuildConfig.DEBUG){
+					Log.d("android-double-take-sample", "Clicked on view");
+					
+				}
 				if (v == view1) {
 					zoomedView = findViewById(R.id.zoomedView1);
 				} else if (v == view2) {
@@ -40,6 +46,8 @@ public class GenericViewZoomActivity extends FragmentActivity {
 				}
 				ZoomAnimation zoomAnim =new ZoomAnimation.Builder(v,zoomedView,
 						zoomedInContainer)
+					.animationTime(getResources().getInteger(
+							android.R.integer.config_longAnimTime))
 					.zoomedOutContainer(zoomedOutContainer)
 					.build();
 				zoomAnim.zoomIn();

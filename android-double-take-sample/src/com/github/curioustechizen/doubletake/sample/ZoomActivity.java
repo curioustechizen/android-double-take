@@ -56,7 +56,10 @@ public class ZoomActivity extends FragmentActivity {
 				expandedImageView1.setImageResource(R.drawable.image1);
 
 				final ZoomAnimation zoomAnimation1 = new ZoomAnimation.Builder(
-						thumb1View, expandedImageView1, container).build();
+						thumb1View, expandedImageView1, container)
+					.animationTime(getResources().getInteger(
+							android.R.integer.config_longAnimTime))
+					.build();
 				zoomAnimation1.zoomIn();
 			}
 		});
