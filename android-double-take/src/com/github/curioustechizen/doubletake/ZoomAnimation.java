@@ -13,6 +13,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 
+/**
+ * The class representing a zoom animation. There is a <em>Zoomed-out view</em> and a <em>Zoomed-in View</em>. There is also the container (layout) within which the zooming should occur. 
+ * The animation consists of zooming in from the zoom-out view to the zoomed-in view such that the zoomed-in view takes up the specified container.
+ * <p>
+ * Obtain an instance of this class using its {@link Builder}
+ * @author Kiran Rao
+ *
+ */
 public class ZoomAnimation {
 
 	private final View mZoomedOutView;
@@ -28,15 +36,24 @@ public class ZoomAnimation {
 		this.mZoomedInContainer = builder.zoomedInContainer;
 		this.mZoomedOutContainer = builder.zoomedOutContainer;
 		this.mAnimationTime = builder.animationTime;
-
-		//init();
 	}
 
+	/**
+	 * Builder for creating an instance of {@link ZoomAnimation}
+	 * @author Kiran Rao
+	 *
+	 */
 	public static class Builder {
 		private View zoomedOutView, zoomedInView;
 		private ViewGroup zoomedInContainer, zoomedOutContainer;
 		private int animationTime;
 
+		/**
+		 * Constructor with mandatory parameters for the builder
+		 * @param zoomedOutView The (intial) zoomed-out view
+		 * @param zoomedInView The (final) zoomed-in view
+		 * @param zoomedInContainer The container that the zoomed-in view should occupy
+		 */
 		public Builder(View zoomedOutView, View zoomedInView,
 				ViewGroup zoomedInContainer) {
 			this.zoomedOutView = zoomedOutView;
@@ -47,16 +64,31 @@ public class ZoomAnimation {
 					.getInteger(android.R.integer.config_shortAnimTime);
 		}
 
+		/**
+		 * Sets the animation duration in milliseconds. Default is {@code android.R.integer.config_shortAnimTime} 
+		 * @param animationTime The animation time in milliseconds
+		 * @return This {@code Builder} object to allow for chaining.
+		 */
 		public Builder animationTime(int animationTime) {
 			this.animationTime = animationTime;
 			return this;
 		}
 		
+		/**
+		 * The container of the zoomed-out view. This is optional. If you specify this container, it will be hidden (visibility set to {@code GONE}) when the zoomed-in view is being shown.
+		 * This is useful if your zoomed-out view is part of a layout (for example a table or a grid) which you want to hide when one of the items is zoomed in.
+		 * @param zoomedOutContainer
+		 * @return This {@code Builder} object to allow for chaining
+		 */
 		public Builder zoomedOutContainer(ViewGroup zoomedOutContainer){
 			this.zoomedOutContainer = zoomedOutContainer;
 			return this;
 		}
 
+		/**
+		 * Build the {@code ZoomAnimation} object with the specified properties
+		 * @return The {@code ZoomAnimation} object
+		 */
 		public ZoomAnimation build() {
 			return new ZoomAnimation(this);
 		}
@@ -110,6 +142,9 @@ public class ZoomAnimation {
 		}
 	}
 
+	/**
+	 * Run the zoom in animation. This step also sets up the {@code OnClickListener} on the zoomed-in view (clicking on which calls the {@link #zoomOut()} method.
+	 */
 	public void zoomIn() {
 		init();
 		// If there's an animation in progress, cancel it immediately and
@@ -123,7 +158,6 @@ public class ZoomAnimation {
 		// begins,
 		// it will position the zoomed-in view in the place of the zoomed-out view.
 		ViewHelper.setAlpha(mZoomedOutView, 0f);
-		//mZoomedOutView.setAlpha(0f);
 		mZoomedInView.setVisibility(View.VISIBLE);
 
 		// Set the pivot point for SCALE_X and SCALE_Y transformations to the
@@ -131,9 +165,6 @@ public class ZoomAnimation {
 		// the zoomed-in view (the default is the center of the view).
 		ViewHelper.setPivotX(mZoomedInView, 0f);
 		ViewHelper.setPivotY(mZoomedInView, 0f);
-//		mZoomedInView.setPivotX(0f);
-//		mZoomedInView.setPivotY(0f);
-		
 
 		// Construct and run the parallel animation of the four translation and
 		// scale properties
@@ -177,6 +208,9 @@ public class ZoomAnimation {
 		});
 	}
 
+	/**
+	 * Run the zoom-out animation
+	 */
 	public void zoomOut() {
 		final float startScaleFinal = startScale;
 		if (mCurrentAnimator != null) {
@@ -203,7 +237,6 @@ public class ZoomAnimation {
 		set.addListener(new AnimatorListenerAdapter() {
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				//mZoomedOutView.setAlpha(1f);
 				ViewHelper.setAlpha(mZoomedOutView, 1f);
 				mZoomedInView.setVisibility(View.GONE);
 				mCurrentAnimator = null;
@@ -211,7 +244,6 @@ public class ZoomAnimation {
 
 			@Override
 			public void onAnimationCancel(Animator animation) {
-				//mZoomedOutView.setAlpha(1f);
 				ViewHelper.setAlpha(mZoomedOutView, 1f);
 				mZoomedInView.setVisibility(View.GONE);
 				mCurrentAnimator = null;
