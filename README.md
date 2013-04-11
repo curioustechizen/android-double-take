@@ -15,6 +15,11 @@ To start off, this library provides a couple of animations described in the Andr
   - Zoom animation
 
 
+##Usage:
+
+android-double-take is provided as an Android library project. Declare your Android application project to depend on android-double-take. Take a look at the sample to see how to use the animations.
+
+
 ##ToDos:
   
   - Provide a way to hook into the animation lifecycle - i.e., provide the library client code a callback similar to `AnimatorListenerAdapter`

@@ -10,6 +10,10 @@ If you want to contribute more animations to this library, the general procedure
 
 With all these in place, send a pull request.
 
+####Resources in the library:
+
+Neither of the currently provided animations requires any resources in the library project. However, other animations might require the use of resources. This is why I have consciously chosen to make this an Android library project. Do not hesitate to add resources in the library if you deem fit.
+
 
 ###Help Resolving issues:
 
