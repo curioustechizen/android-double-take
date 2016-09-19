@@ -1,4 +1,4 @@
-###Note: This library is still under development. 
+### DEPRECATED. Use transitions framework instead 
 Contributions appreciated! Check CONTRIBUTING.md for details
 
 android-double-take
